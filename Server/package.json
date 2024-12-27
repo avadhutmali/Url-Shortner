@@ -5,8 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "start": "node app.js",
-    "postinstall": "npm install"
+    "postinstall": "npm install",
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
