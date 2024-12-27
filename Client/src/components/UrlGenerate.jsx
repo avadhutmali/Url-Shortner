@@ -24,7 +24,7 @@ function UrlGenerate() {
         }
         setIsLoading(true)
         try{
-            const response =await axios.post("http://localhost:8000/api/url/generateShortUrl",{redireUrl,userName})
+            const response =await axios.post("https://url-shortner-dr0j.onrender.com/api/url/generateShortUrl",{redireUrl,userName})
             if(response)setIsGenerated(true)
             console.log(response.data.id)
             setShortId(response.data.id)

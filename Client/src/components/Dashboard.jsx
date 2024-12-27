@@ -11,7 +11,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post("http://localhost:8000/api/user/urls", { userName });
+                const response = await axios.post("https://url-shortner-dr0j.onrender.com/api/user/urls", { userName });
                 console.log("Response data:", response.data);
                 setData(response.data);
             } catch (error) {

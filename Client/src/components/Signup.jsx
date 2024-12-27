@@ -12,7 +12,7 @@ function SignupPage() {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/api/user/signup', { 
+      const response = await axios.post('https://url-shortner-dr0j.onrender.com/api/user/signup', { 
         userName, 
         password 
       });

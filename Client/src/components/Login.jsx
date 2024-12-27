@@ -12,7 +12,7 @@ function LoginPage() {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/api/user/login",{userName,password})
+      const response = await axios.post("https://url-shortner-dr0j.onrender.com/api/user/login",{userName,password})
       if (!response.status===200) {
         const data = await response.data;
         setErrorMessage(data.message || 'Login failed.');
