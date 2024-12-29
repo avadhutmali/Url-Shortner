@@ -15,7 +15,7 @@ const ClipboardInput = ({shortId}) => {
 
   return (
     <div className="h-14 rounded-lg w-[60vw] bg-zinc-500 mt-10 mx-auto p-2 flex gap-5">
-      <input id="copy" className="w-[80%] h-10 rounded-lg text-center text-2xl font-semibold bg-white" value={"http://localhost:8000/api/url/"+shortId}/>
+      <input id="copy" className="w-[80%] h-10 rounded-lg text-center text-2xl font-semibold bg-white" value={"https://url-shortner-dr0j.onrender.com/api/url/"+shortId}/>
       <button  className="w-[15%] h-10 rounded-lg text-center text-2xl font-semibold bg-blue-600 text-white cursor-pointer" onClick={handleCopy}>{copied?"Copied":"Copy"}</button>
     </div>
   );
