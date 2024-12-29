@@ -31,7 +31,7 @@ function Dashboard() {
     }
 
     const handleCopy=(data)=>{
-        navigator.clipboard.writeText("http://localhost:8000/api/url/"+data).then(()=>{
+        navigator.clipboard.writeText("https://url-shortner-dr0j.onrender.com/api/url/"+data).then(()=>{
             setCopiedId(data)
             setTimeout(()=>{setCopiedId(null)},5000)
         })
