@@ -8,6 +8,13 @@ function SignupPage() {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (token) {
+          navigate("/");
+      }
+  }, [navigate]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 

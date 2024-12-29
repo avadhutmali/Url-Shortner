@@ -11,6 +11,13 @@ function LoginPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    useEffect(() => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                navigate("/");
+            }
+        }, [navigate]);
+
     try {
       const response = await axios.post("https://url-shortner-dr0j.onrender.com/api/user/login",{userName,password})
       if (!response.status===200) {
