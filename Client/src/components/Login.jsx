@@ -8,50 +8,64 @@ function LoginPage() {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
+  // Check if the user is already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    useEffect(() => {
-            const token = localStorage.getItem('token');
-            if (token) {
-                navigate("/");
-            }
-        }, [navigate]);
-
     try {
-      const response = await axios.post("https://url-shortner-dr0j.onrender.com/api/user/login",{userName,password})
-      if (!response.status===200) {
-        const data = await response.data;
+      const response = await axios.post(
+        "https://url-shortner-dr0j.onrender.com/api/user/login",
+        { userName, password }
+      );
+
+      if (response.status !== 200) {
+        const data = response.data;
         setErrorMessage(data.message || 'Login failed.');
         return;
       }
 
-      const data = await response.data;
-      // Store token (securely)
+      const data = response.data;
+      // Store token securely
       localStorage.setItem('token', data.token);
       localStorage.setItem('userName', userName);
-      console.log(data)
+      console.log(data);
 
       navigate('/'); // Redirect to dashboard
     } catch (error) {
       console.error('Login error:', error);
-      if(error.status===404)setErrorMessage('Invalid Credentials. ');
-      else setErrorMessage('An error occurred during login.');
+      if (error.response?.status === 404) {
+        setErrorMessage('Invalid Credentials.');
+      } else {
+        setErrorMessage('An error occurred during login.');
+      }
     }
   };
-  const handleNavigateToSignUp=()=>{
-    navigate("/signup")
-  }
+
+  const handleNavigateToSignUp = () => {
+    navigate("/signup");
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900">
-      <div className="absolute top-2 right-2 h-10 w-20 p-2 bg-blue-600 text-center rounded-xl cursor-pointer text-white" onClick={handleNavigateToSignUp}>Signup</div>
+      <div
+        className="absolute top-2 right-2 h-10 w-20 p-2 bg-blue-600 text-center rounded-xl cursor-pointer text-white"
+        onClick={handleNavigateToSignUp}
+      >
+        Signup
+      </div>
       <div className="p-8 bg-gray-800 rounded shadow-md">
         <h1 className="text-2xl font-bold mb-4 text-white">Login</h1>
         {errorMessage && (
           <div className="text-red-500 mb-4">{errorMessage}</div>
         )}
-        <form onSubmit={handleSubmit} className="space-y-4 ">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="userName" className="block text-sm font-medium text-white">
               Username:
